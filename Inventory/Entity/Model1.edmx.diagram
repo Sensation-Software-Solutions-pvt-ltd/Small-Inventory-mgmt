@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ccf333a499164c02aeb390ae00733273" Name="Diagram1">
+        <EntityTypeShape EntityType="INVENTORYModel.InventoryDisposal" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.Store" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.StoreInventory" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.StorePurchaseItem" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.User" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.Zone" Width="1.5" PointX="4.75" PointY="7.75" />
+        <EntityTypeShape EntityType="INVENTORYModel.ZoneInventory" Width="1.5" PointX="7" PointY="4" />
+        <AssociationConnector Association="INVENTORYModel.FK__ZoneInven__Store__01142BA1" />
+        <AssociationConnector Association="INVENTORYModel.FK__ZoneInven__ZoneI__6E01572D" />
+        <EntityTypeShape EntityType="INVENTORYModel.Individual" Width="1.5" PointX="9.375" PointY="1.25" />
+        <EntityTypeShape EntityType="INVENTORYModel.IndividualInventory" Width="1.5" PointX="11.625" PointY="2.875" />
+        <AssociationConnector Association="INVENTORYModel.FK__Individua__Indiv__160F4887" />
+        <AssociationConnector Association="INVENTORYModel.FK__Individua__Store__2739D489" />
+        <EntityTypeShape EntityType="INVENTORYModel.StoreTransaction" Width="1.5" PointX="7.375" PointY="7.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

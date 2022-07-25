@@ -1,0 +1,571 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="INVENTORYModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="IndividualInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rank" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreItemId" Type="int" />
+          <Property Name="ItemCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="SupplyDate" Type="datetime" />
+          <Property Name="IndividualId" Type="int" />
+        </EntityType>
+        <EntityType Name="Individuals">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IDNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rank" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="Address" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="InventoryDisposal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreItemId" Type="int" />
+          <Property Name="ItmeCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="SellPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Disposaldate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreAddress" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="StoreInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" />
+          <Property Name="ItemDescription" Type="nvarchar(max)" />
+          <Property Name="ItemCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="ItemType" Type="int" />
+          <Property Name="AvailableQuantity" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="StorePurchaseItems">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" />
+          <Property Name="StoreItemId" Type="int" />
+          <Property Name="ItemDescription" Type="nvarchar(max)" />
+          <Property Name="ItemCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="InvoiceNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="VendorName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PurchaseDescription" Type="nvarchar(max)" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="CreatedBy" Type="int" />
+          <Property Name="Purchasedate" Type="datetime" />
+          <Property Name="ItemPrice" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="StoreTransactions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StoreItemId" Type="int" />
+          <Property Name="ItemCount" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StoreId" Type="int" />
+          <Property Name="TransactionType" Type="int" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="IndividualName" Type="nvarchar" MaxLength="50" />
+          <Property Name="IndividualId" Type="int" />
+          <Property Name="TransactionDate" Type="datetime" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ZoneName" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="StoreId" Type="int" />
+        </EntityType>
+        <EntityType Name="ZoneInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="50" />
+          <Property Name="StoreItemId" Type="int" />
+          <Property Name="ZoneId" Type="int" />
+          <Property Name="ItemCount" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Zones">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SortDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="StoreId" Type="int" />
+        </EntityType>
+        <Association Name="FK__Individua__Indiv__160F4887">
+          <End Role="Individuals" Type="Self.Individuals" Multiplicity="0..1" />
+          <End Role="IndividualInventory" Type="Self.IndividualInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individuals">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndividualInventory">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Individua__Store__2739D489">
+          <End Role="StoreInventory" Type="Self.StoreInventory" Multiplicity="0..1" />
+          <End Role="IndividualInventory" Type="Self.IndividualInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndividualInventory">
+              <PropertyRef Name="StoreItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ZoneInven__Store__01142BA1">
+          <End Role="StoreInventory" Type="Self.StoreInventory" Multiplicity="0..1" />
+          <End Role="ZoneInventory" Type="Self.ZoneInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneInventory">
+              <PropertyRef Name="StoreItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ZoneInven__ZoneI__6E01572D">
+          <End Role="Zones" Type="Self.Zones" Multiplicity="0..1" />
+          <End Role="ZoneInventory" Type="Self.ZoneInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zones">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneInventory">
+              <PropertyRef Name="ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="INVENTORYModelStoreContainer">
+          <EntitySet Name="IndividualInventory" EntityType="Self.IndividualInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Individuals" EntityType="Self.Individuals" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryDisposal" EntityType="Self.InventoryDisposal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreInventory" EntityType="Self.StoreInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StorePurchaseItems" EntityType="Self.StorePurchaseItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StoreTransactions" EntityType="Self.StoreTransactions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ZoneInventory" EntityType="Self.ZoneInventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Zones" EntityType="Self.Zones" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Individua__Indiv__160F4887" Association="Self.FK__Individua__Indiv__160F4887">
+            <End Role="Individuals" EntitySet="Individuals" />
+            <End Role="IndividualInventory" EntitySet="IndividualInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Individua__Store__2739D489" Association="Self.FK__Individua__Store__2739D489">
+            <End Role="StoreInventory" EntitySet="StoreInventory" />
+            <End Role="IndividualInventory" EntitySet="IndividualInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ZoneInven__Store__01142BA1" Association="Self.FK__ZoneInven__Store__01142BA1">
+            <End Role="StoreInventory" EntitySet="StoreInventory" />
+            <End Role="ZoneInventory" EntitySet="ZoneInventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ZoneInven__ZoneI__6E01572D" Association="Self.FK__ZoneInven__ZoneI__6E01572D">
+            <End Role="Zones" EntitySet="Zones" />
+            <End Role="ZoneInventory" EntitySet="ZoneInventory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="INVENTORYModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="INVENTORYEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="InventoryDisposals" EntityType="INVENTORYModel.InventoryDisposal" />
+          <EntitySet Name="Stores" EntityType="INVENTORYModel.Store" />
+          <EntitySet Name="StoreInventories" EntityType="INVENTORYModel.StoreInventory" />
+          <EntitySet Name="StorePurchaseItems" EntityType="INVENTORYModel.StorePurchaseItem" />
+          <EntitySet Name="Users" EntityType="INVENTORYModel.User" />
+          <EntitySet Name="Zones" EntityType="INVENTORYModel.Zone" />
+          <EntitySet Name="ZoneInventories" EntityType="INVENTORYModel.ZoneInventory" />
+          <AssociationSet Name="FK__ZoneInven__Store__01142BA1" Association="INVENTORYModel.FK__ZoneInven__Store__01142BA1">
+            <End Role="StoreInventory" EntitySet="StoreInventories" />
+            <End Role="ZoneInventory" EntitySet="ZoneInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ZoneInven__ZoneI__6E01572D" Association="INVENTORYModel.FK__ZoneInven__ZoneI__6E01572D">
+            <End Role="Zone" EntitySet="Zones" />
+            <End Role="ZoneInventory" EntitySet="ZoneInventories" />
+          </AssociationSet>
+          <EntitySet Name="Individuals" EntityType="INVENTORYModel.Individual" />
+          <EntitySet Name="IndividualInventories" EntityType="INVENTORYModel.IndividualInventory" />
+          <AssociationSet Name="FK__Individua__Indiv__160F4887" Association="INVENTORYModel.FK__Individua__Indiv__160F4887">
+            <End Role="Individual" EntitySet="Individuals" />
+            <End Role="IndividualInventory" EntitySet="IndividualInventories" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Individua__Store__2739D489" Association="INVENTORYModel.FK__Individua__Store__2739D489">
+            <End Role="StoreInventory" EntitySet="StoreInventories" />
+            <End Role="IndividualInventory" EntitySet="IndividualInventories" />
+          </AssociationSet>
+          <EntitySet Name="StoreTransactions" EntityType="INVENTORYModel.StoreTransaction" />
+          </EntityContainer>
+        <EntityType Name="InventoryDisposal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreItemId" Type="Int32" />
+          <Property Name="ItmeCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="SellPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Disposaldate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Store">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreAddress" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="StoreInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ItemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="ItemType" Type="Int32" />
+          <Property Name="AvailableQuantity" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="ZoneInventories" Relationship="INVENTORYModel.FK__ZoneInven__Store__01142BA1" FromRole="StoreInventory" ToRole="ZoneInventory" />
+          <NavigationProperty Name="IndividualInventories" Relationship="INVENTORYModel.FK__Individua__Store__2739D489" FromRole="StoreInventory" ToRole="IndividualInventory" />
+        </EntityType>
+        <EntityType Name="StorePurchaseItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="StoreItemId" Type="Int32" />
+          <Property Name="ItemDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ItemCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InvoiceNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="VendorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="Purchasedate" Type="DateTime" Precision="3" />
+          <Property Name="ItemPrice" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="StoreId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Zone">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SortDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="StoreId" Type="Int32" />
+          <NavigationProperty Name="ZoneInventories" Relationship="INVENTORYModel.FK__ZoneInven__ZoneI__6E01572D" FromRole="Zone" ToRole="ZoneInventory" />
+        </EntityType>
+        <EntityType Name="ZoneInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreItemId" Type="Int32" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="ItemCount" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="StoreInventory" Relationship="INVENTORYModel.FK__ZoneInven__Store__01142BA1" FromRole="ZoneInventory" ToRole="StoreInventory" />
+          <NavigationProperty Name="Zone" Relationship="INVENTORYModel.FK__ZoneInven__ZoneI__6E01572D" FromRole="ZoneInventory" ToRole="Zone" />
+        </EntityType>
+        <Association Name="FK__ZoneInven__Store__01142BA1">
+          <End Type="INVENTORYModel.StoreInventory" Role="StoreInventory" Multiplicity="0..1" />
+          <End Type="INVENTORYModel.ZoneInventory" Role="ZoneInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneInventory">
+              <PropertyRef Name="StoreItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ZoneInven__ZoneI__6E01572D">
+          <End Type="INVENTORYModel.Zone" Role="Zone" Multiplicity="0..1" />
+          <End Type="INVENTORYModel.ZoneInventory" Role="ZoneInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Zone">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ZoneInventory">
+              <PropertyRef Name="ZoneId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Individual">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IDNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="IndividualInventories" Relationship="INVENTORYModel.FK__Individua__Indiv__160F4887" FromRole="Individual" ToRole="IndividualInventory" />
+        </EntityType>
+        <EntityType Name="IndividualInventory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rank" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreItemName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StoreItemId" Type="Int32" />
+          <Property Name="ItemCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="SupplyDate" Type="DateTime" Precision="3" />
+          <Property Name="IndividualId" Type="Int32" />
+          <NavigationProperty Name="Individual" Relationship="INVENTORYModel.FK__Individua__Indiv__160F4887" FromRole="IndividualInventory" ToRole="Individual" />
+          <NavigationProperty Name="StoreInventory" Relationship="INVENTORYModel.FK__Individua__Store__2739D489" FromRole="IndividualInventory" ToRole="StoreInventory" />
+        </EntityType>
+        <Association Name="FK__Individua__Indiv__160F4887">
+          <End Type="INVENTORYModel.Individual" Role="Individual" Multiplicity="0..1" />
+          <End Type="INVENTORYModel.IndividualInventory" Role="IndividualInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Individual">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndividualInventory">
+              <PropertyRef Name="IndividualId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Individua__Store__2739D489">
+          <End Type="INVENTORYModel.StoreInventory" Role="StoreInventory" Multiplicity="0..1" />
+          <End Type="INVENTORYModel.IndividualInventory" Role="IndividualInventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StoreInventory">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="IndividualInventory">
+              <PropertyRef Name="StoreItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StoreTransaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StoreItemId" Type="Int32" />
+          <Property Name="ItemCount" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StoreId" Type="Int32" />
+          <Property Name="TransactionType" Type="Int32" />
+          <Property Name="ZoneId" Type="Int32" />
+          <Property Name="IndividualName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IndividualId" Type="Int32" />
+          <Property Name="TransactionDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ZoneName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="INVENTORYModelStoreContainer" CdmEntityContainer="INVENTORYEntities">
+          <EntitySetMapping Name="InventoryDisposals">
+            <EntityTypeMapping TypeName="INVENTORYModel.InventoryDisposal">
+              <MappingFragment StoreEntitySet="InventoryDisposal">
+                <ScalarProperty Name="Disposaldate" ColumnName="Disposaldate" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SellPrice" ColumnName="SellPrice" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="ItmeCount" ColumnName="ItmeCount" />
+                <ScalarProperty Name="StoreItemId" ColumnName="StoreItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stores">
+            <EntityTypeMapping TypeName="INVENTORYModel.Store">
+              <MappingFragment StoreEntitySet="Store">
+                <ScalarProperty Name="StoreAddress" ColumnName="StoreAddress" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreInventories">
+            <EntityTypeMapping TypeName="INVENTORYModel.StoreInventory">
+              <MappingFragment StoreEntitySet="StoreInventory">
+                <ScalarProperty Name="AvailableQuantity" ColumnName="AvailableQuantity" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StorePurchaseItems">
+            <EntityTypeMapping TypeName="INVENTORYModel.StorePurchaseItem">
+              <MappingFragment StoreEntitySet="StorePurchaseItems">
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="Purchasedate" ColumnName="Purchasedate" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="PurchaseDescription" ColumnName="PurchaseDescription" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="InvoiceNumber" ColumnName="InvoiceNumber" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="StoreItemId" ColumnName="StoreItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="INVENTORYModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Zones">
+            <EntityTypeMapping TypeName="INVENTORYModel.Zone">
+              <MappingFragment StoreEntitySet="Zones">
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="SortDescription" ColumnName="SortDescription" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ZoneInventories">
+            <EntityTypeMapping TypeName="INVENTORYModel.ZoneInventory">
+              <MappingFragment StoreEntitySet="ZoneInventory">
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="StoreItemId" ColumnName="StoreItemId" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Individuals">
+            <EntityTypeMapping TypeName="INVENTORYModel.Individual">
+              <MappingFragment StoreEntitySet="Individuals">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="IDNumber" ColumnName="IDNumber" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndividualInventories">
+            <EntityTypeMapping TypeName="INVENTORYModel.IndividualInventory">
+              <MappingFragment StoreEntitySet="IndividualInventory">
+                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
+                <ScalarProperty Name="SupplyDate" ColumnName="SupplyDate" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="StoreItemId" ColumnName="StoreItemId" />
+                <ScalarProperty Name="StoreItemName" ColumnName="StoreItemName" />
+                <ScalarProperty Name="Rank" ColumnName="Rank" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StoreTransactions">
+            <EntityTypeMapping TypeName="INVENTORYModel.StoreTransaction">
+              <MappingFragment StoreEntitySet="StoreTransactions">
+                <ScalarProperty Name="ZoneName" ColumnName="ZoneName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="TransactionDate" ColumnName="TransactionDate" />
+                <ScalarProperty Name="IndividualId" ColumnName="IndividualId" />
+                <ScalarProperty Name="IndividualName" ColumnName="IndividualName" />
+                <ScalarProperty Name="ZoneId" ColumnName="ZoneId" />
+                <ScalarProperty Name="TransactionType" ColumnName="TransactionType" />
+                <ScalarProperty Name="StoreId" ColumnName="StoreId" />
+                <ScalarProperty Name="ItemCount" ColumnName="ItemCount" />
+                <ScalarProperty Name="StoreItemId" ColumnName="StoreItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
